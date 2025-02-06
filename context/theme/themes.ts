@@ -1,0 +1,41 @@
+import { ThemeColors } from "./types";
+
+export const lightColors: ThemeColors = {
+  primary: "#2A9D8F",
+  secondary: "#E9C46A",
+  background: "#FFFFFF",
+  surface: "#F7F7F7",
+  surfaceVariant: "#EEEEEE",
+  text: "#264653",
+  textSecondary: "#666666",
+  border: "#E0E0E0",
+  error: "#E76F51",
+  success: "#2A9D8F",
+  warning: "#F4A261",
+  info: "#4A90E2",
+  card: "#FFFFFF",
+  cardVariant: "#F5F5F5",
+  accent: "#EFA00B",
+  placeholder: "#BDBDBD",
+  disabled: "#E0E0E0",
+};
+
+export const darkColors: ThemeColors = {
+  primary: "#3DAEA3",
+  secondary: "#EFD086",
+  background: "#121212",
+  surface: "#1E1E1E",
+  surfaceVariant: "#2C2C2C",
+  text: "#FFFFFF",
+  textSecondary: "#B0B0B0",
+  border: "#424242",
+  error: "#E76F51",
+  success: "#3DAEA3",
+  warning: "#F4A261",
+  info: "#64B5F6",
+  card: "#1E1E1E",
+  cardVariant: "#2C2C2C",
+  accent: "#EFA00B",
+  placeholder: "#666666",
+  disabled: "#424242",
+};

@@ -1,105 +1,84 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  Dimensions,
-  SafeAreaView,
-  Image,
-  ScrollView,
-} from "react-native";
-import { Button, Avatar } from "react-native-paper";
-import { Switch } from "react-native-paper";
-import { supabase } from "@/lib/supabase";
+import { View, Text, ScrollView, Switch, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Picker } from "@react-native-picker/picker";
+import { useState } from "react";
 
-export default function SettingsPage() {
-  const [budgetAlertToggle, setBudgetAlertToggle] = useState(false);
-  const [weeklyReportToggle, setWeeklyReportToggle] = useState(false);
-  const [monthlyReportToggle, setMonthlyReportToggle] = useState(false);
-
-  async function signOut() {
-    const { error } = await supabase.auth.signOut();
-  }
-
-  const ToggleBudgetAlertSwitch = () =>
-    setBudgetAlertToggle(!budgetAlertToggle);
-  const ToggleWeeklyReportSwitch = () =>
-    setWeeklyReportToggle(!weeklyReportToggle);
-  const ToggleMonthlyReportSwitch = () =>
-    setMonthlyReportToggle(!monthlyReportToggle);
+export default function SettingsScreen() {
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [locationEnabled, setLocationEnabled] = useState(true);
+  const [selectedTheme, setSelectedTheme] = useState("light");
 
   return (
-    <SafeAreaView>
-      <View className="flex p-5">
-        <Text className="text-white text-3xl font-bold py-2">Settings</Text>
-        {/* Settings Begin */}
-        <View className="flex flex-col">
-          {/* budget alerts */}
-          <View className="flex flex-row items-center py-2">
-            <View className="flex flex-col">
-              <Text className="text-white text-xl">
-                Automated Budget Alerts
-              </Text>
-              <Text className="text-gray-500 break-before-auto ">
-                On Push Notification
-              </Text>
-            </View>
-            <View className="flex flex-grow justify-end items-end mr-5">
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+      <ScrollView className="flex-1 p-4">
+        <Text className="text-2xl font-bold mb-6">Settings</Text>
+
+        <View className="space-y-6">
+          <View>
+            <Text className="text-lg font-semibold mb-4">Notifications</Text>
+            <View className="flex-row justify-between items-center bg-gray-50 p-4 rounded-xl">
+              <Text>Push Notifications</Text>
               <Switch
-                value={budgetAlertToggle}
-                onValueChange={ToggleBudgetAlertSwitch}
-                color="#EFA00B"
+                value={notificationsEnabled}
+                onValueChange={setNotificationsEnabled}
+                trackColor={{ false: "#767577", true: "#2A9D8F" }}
               />
             </View>
           </View>
-          {/*Reports */}
-          {/* Weekly Report */}
-          <View className="flex flex-row items-center py-2">
-            <View className="flex flex-col">
-              <Text className="text-white text-xl">
-                Get Weekly Spending Reports
-              </Text>
-              <Text className="text-gray-500 break-before-auto ">
-                A customised spending flashback
-              </Text>
+
+          <View>
+            <Text className="text-lg font-semibold mb-4">Theme</Text>
+            <View className="flex-row justify-between items-center bg-gray-50 p-4 rounded-xl">
+              <Text className="w-1/2">App Theme</Text>
+              <View className="w-1/2 bg-gray-50 rounded-xl overflow-hidden">
+                <Picker
+                  selectedValue={selectedTheme}
+                  onValueChange={(itemValue) => setSelectedTheme(itemValue)}
+                  style={{
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  <Picker.Item
+                    label="Light Theme"
+                    value="light"
+                    style={{ fontSize: 16 }}
+                  />
+                  <Picker.Item
+                    label="Dark Theme"
+                    value="dark"
+                    style={{ fontSize: 16 }}
+                  />
+                  <Picker.Item
+                    label="System Theme"
+                    value="system"
+                    style={{ fontSize: 16 }}
+                  />
+                </Picker>
+              </View>
             </View>
-            <View className="flex flex-grow justify-end items-end mr-5">
+          </View>
+
+          <View>
+            <Text className="text-lg font-semibold mb-4">
+              Location Services
+            </Text>
+            <View className="flex-row justify-between items-center bg-gray-50 p-4 rounded-xl">
+              <Text>Location Access</Text>
               <Switch
-                value={weeklyReportToggle}
-                onValueChange={ToggleWeeklyReportSwitch}
-                color="#EFA00B"
+                value={locationEnabled}
+                onValueChange={setLocationEnabled}
+                trackColor={{ false: "#767577", true: "#2A9D8F" }}
               />
             </View>
           </View>
-          {/* Montly Report */}
-          <View className="flex flex-row items-center py-2">
-            <View className="flex flex-col">
-              <Text className="text-white text-xl">
-                Get Montly Spending Reports
-              </Text>
-              <Text className="text-gray-500 break-before-auto ">
-                A customised spending flashback
-              </Text>
-            </View>
-            <View className="flex flex-grow justify-end items-end mr-5">
-              <Switch
-                value={monthlyReportToggle}
-                onValueChange={ToggleMonthlyReportSwitch}
-                color="#EFA00B"
-              />
-            </View>
-          </View>
+
+          <TouchableOpacity className="bg-red-500 p-4 rounded-xl">
+            <Text className="text-white text-center font-semibold">
+              Sign Out
+            </Text>
+          </TouchableOpacity>
         </View>
-        <Button
-          onPress={signOut}
-          mode="contained"
-          buttonColor="#e83f3f"
-          className="mt-5"
-        >
-          Sign Out
-        </Button>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

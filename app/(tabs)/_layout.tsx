@@ -1,52 +1,40 @@
-import React from "react";
 import { Tabs } from "expo-router";
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
+        tabBarStyle: { backgroundColor: "#FFFFFF" },
+        tabBarActiveTintColor: "#2A9D8F",
+        tabBarInactiveTintColor: "#666666",
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="analytics"
+        name="discover"
         options={{
-          title: "Analytics",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "trending-up" : "trending-up"}
-              color={color}
-            />
+          title: "Discover",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="compass-outline" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="addExpense"
+        name="memories"
         options={{
-          title: "Add",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "add-circle-outline" : "add-circle-outline"}
-              color={color}
-            />
+          title: "Memories",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="time-outline" size={size} color={color} />
           ),
         }}
       />
@@ -54,11 +42,8 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "person-outline" : "person"}
-              color={color}
-            />
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
           ),
         }}
       />
@@ -66,11 +51,8 @@ export default function TabLayout() {
         name="settings"
         options={{
           title: "Settings",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "settings-outline" : "settings-outline"}
-              color={color}
-            />
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="settings-outline" size={size} color={color} />
           ),
         }}
       />

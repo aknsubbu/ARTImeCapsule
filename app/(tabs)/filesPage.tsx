@@ -7,7 +7,7 @@ import {
   extractMerchantData,
   extractPaymentMethodData,
 } from "@/components/functions/fileParser";
-import { supabase } from "../lib/supabase";
+import { supabase } from "../../lib/supabase";
 
 type ExtractedData = {
   transactions: ReturnType<typeof extractTransactionsData>;
