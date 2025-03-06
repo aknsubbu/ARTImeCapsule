@@ -65,8 +65,19 @@ export default function TabLayout() {
         name="review"
         options={{
           href: null, // This makes it not appear in the tab bar
+          title: "Review",
         }}
       />
+
+      <Tabs.Screen
+        name="mapview"
+        options={{
+          href: null, // This makes it not appear in the tab bar
+          title: "Map View",
+        }}
+      />
+
+      {/* end of tabs */}
     </Tabs>
   );
 }
