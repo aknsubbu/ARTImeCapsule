@@ -14,6 +14,7 @@
       "backgroundColor": "#000000"
     },
     "ios": {
+      "sdkVersion": "17.0",
       "supportsTablet": true,
       "infoPlist": {
         "NSContactsUsageDescription": "This app uses the user contacts to verify the user before rendering any service",

@@ -78,7 +78,8 @@
     "react-native-vector-icons": "^10.1.0",
     "react-native-web": "~0.19.13",
     "tesseract.js": "^5.1.1",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "expo-dev-client": "~5.0.13"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
